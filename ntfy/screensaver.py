@@ -10,8 +10,10 @@ def xscreensaver_detect():
     else:
         return True
 
+
 def xscreensaver_is_locked():
     return 'screen locked' in check_output(split('xscreensaver-command -time'))
+
 
 def is_locked():
     if xscreensaver_detect():
