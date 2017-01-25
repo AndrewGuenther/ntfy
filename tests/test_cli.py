@@ -23,6 +23,7 @@ class TestRunCmd(TestCase):
         args.command = ['true']
         args.pid = None
         args.unfocused_only = False
+        args.locked_only = False
         self.assertEqual(('"true" succeeded in 0:00 minutes', 0), run_cmd(args))
 
     @patch('ntfy.cli.Popen')
@@ -34,6 +35,7 @@ class TestRunCmd(TestCase):
         args.pid = None
         args.no_emoji = False
         args.unfocused_only = False
+        args.locked_only = False
         self.assertEqual((':white_check_mark: "true" succeeded in 0:00 minutes', 0),
                          run_cmd(args))
 
@@ -52,6 +54,7 @@ class TestRunCmd(TestCase):
         args.command = ['true']
         args.pid = None
         args.unfocused_only = False
+        args.locked_only = False
         self.assertEqual((None, None), run_cmd(args))
 
     @patch('ntfy.cli.Popen')
@@ -62,6 +65,7 @@ class TestRunCmd(TestCase):
         args.command = ['false']
         args.pid = None
         args.unfocused_only = False
+        args.locked_only = False
         self.assertEqual(('"false" failed (code 42) in 0:00 minutes', 42), run_cmd(args))
 
     @patch('ntfy.cli.Popen')
@@ -72,6 +76,7 @@ class TestRunCmd(TestCase):
         args.command = ['true']
         args.pid = None
         args.unfocused_only = False
+        args.locked_only = False
         # not actually used
         args.stdout = True
         args.stderr = False
@@ -85,6 +90,7 @@ class TestRunCmd(TestCase):
         args.command = ['true']
         args.pid = None
         args.unfocused_only = False
+        args.locked_only = False
         # not actually used
         args.stdout = False
         args.stderr = True
@@ -98,6 +104,7 @@ class TestRunCmd(TestCase):
         args.command = ['true']
         args.pid = None
         args.unfocused_only = False
+        args.locked_only = False
         # not actually used
         args.stdout = True
         args.stderr = True
@@ -111,6 +118,7 @@ class TestRunCmd(TestCase):
         args.command = ['true']
         args.pid = None
         args.unfocused_only = False
+        args.locked_only = False
         # not actually used
         args.stdout = True
         args.stderr = True
@@ -123,6 +131,7 @@ class TestRunCmd(TestCase):
         args.formatter = ("true", 0, 65)
         args.longer_than = -1
         args.unfocused_only = False
+        args.locked_only = False
         self.assertEqual(('"true" succeeded in 1:05 minutes', 0), run_cmd(args))
 
     def test_formatter_failure(self):
@@ -132,6 +141,7 @@ class TestRunCmd(TestCase):
         args.formatter = ("false", 1, 10)
         args.longer_than = -1
         args.unfocused_only = False
+        args.locked_only = False
         self.assertEqual(('"false" failed (code 1) in 0:10 minutes', 1), run_cmd(args))
 
 
@@ -164,6 +174,7 @@ class TestWatchPID(TestCase):
         args = MagicMock()
         args.pid = 1
         args.unfocused_only = False
+        args.locked_only = False
         self.assertEqual('PID[1]: "cmd" finished in 0:00 minutes',
                          run_cmd(args)[0])
 

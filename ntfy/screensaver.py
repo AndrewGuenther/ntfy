@@ -4,7 +4,7 @@ from subprocess import check_output, check_call, CalledProcessError, PIPE
 
 def xscreensaver_detect():
     try:
-        check_call(split('pgrep xscreensaer'), stdout=PIPE)
+        check_call(split('pgrep xscreensaver'), stdout=PIPE)
     except CalledProcessError:
         return False
     else:
